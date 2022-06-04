@@ -19,8 +19,10 @@ class App extends Component {
   };
 
   handleContactAdd = ({ name, number }) => {
+    const normalizeName = name.toLocaleLowerCase();
+
     const isNameInContact = this.state.contacts.find(
-      contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+      contact => contact.name.toLocaleLowerCase() === normalizeName
     );
 
     if (isNameInContact) {
