@@ -9,8 +9,8 @@ const INITIAL_STATE = {
 };
 
 class ContactForm extends Component {
-  inputIdList = Object.keys(INITIAL_STATE).reduce(
-    (obj, key) => ({ ...obj, [key]: nanoid() }),
+  idList = Object.keys(INITIAL_STATE).reduce(
+    (obj, key) => ({ ...obj, [key + 'Id']: nanoid() }),
     {}
   );
 
@@ -34,13 +34,14 @@ class ContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
+    const { nameId, numberId } = this.idList;
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <InputWrapper>
-          <Label htmlFor={this.inputIdList.name}>Name</Label>
+          <Label htmlFor={nameId}>Name</Label>
           <Input
-            id={this.inputIdList.name}
+            id={nameId}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -51,9 +52,9 @@ class ContactForm extends Component {
           />
         </InputWrapper>
         <InputWrapper>
-          <Label htmlFor={this.inputIdList.number}>Phone</Label>
+          <Label htmlFor={numberId}>Phone</Label>
           <Input
-            id={this.inputIdList.number}
+            id={numberId}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

@@ -19,10 +19,29 @@ class App extends Component {
   };
 
   handleContactAdd = ({ name, number }) => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id: nanoid(), name, number }],
-      filter: '',
-    }));
+    const isNameInContact = this.state.contacts.find(
+      contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+    );
+
+    if (isNameInContact) {
+      alert(`${name} is already in contacts`);
+    } else {
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, { id: nanoid(), name, number }],
+        filter: '',
+      }));
+    }
+  };
+
+  handleContactRemove = removeContactId => {
+    return () => {
+      this.setState(prevState => ({
+        contacts: prevState.contacts.filter(
+          contact => contact.id !== removeContactId
+        ),
+        filter: '',
+      }));
+    };
   };
 
   handleFiterChange = evt => {
@@ -31,8 +50,10 @@ class App extends Component {
 
   filterContacts = () => {
     const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
@@ -51,7 +72,10 @@ class App extends Component {
             filterValue={filter}
             onFilterChange={this.handleFiterChange}
           />
-          <ContactList contacts={visibleContacts} />
+          <ContactList
+            contacts={visibleContacts}
+            onContactRemove={this.handleContactRemove}
+          />
         </Container>
       </Wrapper>
     );
