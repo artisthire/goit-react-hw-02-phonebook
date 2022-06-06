@@ -37,27 +37,25 @@ class App extends Component {
 
   handleContactRemove = removeContactId => {
     return () => {
-      this.setState(prevState => ({
-        contacts: prevState.contacts.filter(
-          contact => contact.id !== removeContactId
-        ),
+      this.setState(({ contacts }) => ({
+        contacts: contacts.filter(contact => contact.id !== removeContactId),
         filter: '',
       }));
     };
   };
 
-  handleFiterChange = evt => {
-    this.setState({ filter: evt.target.value });
+  handleFiterChange = ({ target }) => {
+    this.setState({ filter: target.value });
   };
 
-  filterContacts = () => {
+  filterContacts() {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
-  };
+  }
 
   render() {
     const { filter } = this.state;

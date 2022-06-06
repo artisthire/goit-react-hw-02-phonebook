@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types';
-import { Item, Number, Button } from './ContactListItem.styled';
+import { Number, Button } from './ContactListItem.styled';
 
-function ContactListItem({ id, name, number, onContactRemove }) {
+function ContactListItem({ name, number, onContactRemove }) {
   return (
-    <Item>
+    <>
       {name}: <Number>{number}</Number>{' '}
-      <Button onClick={onContactRemove(id)}>Delete</Button>
-    </Item>
+      <Button onClick={onContactRemove}>Delete</Button>
+    </>
   );
 }
 
 ContactListItem.propTypes = {
-  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   onContactRemove: PropTypes.func.isRequired,
