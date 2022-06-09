@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
-import { Form, InputWrapper, Label, Input, Button } from './ContactForm.styled';
+import { Form, Label, LabelName, Input, Button } from './ContactForm.styled';
 
 const INITIAL_STATE = {
   name: '',
@@ -9,11 +8,6 @@ const INITIAL_STATE = {
 };
 
 class ContactForm extends Component {
-  idList = Object.keys(INITIAL_STATE).reduce(
-    (obj, key) => ({ ...obj, [key + 'Id']: nanoid() }),
-    {}
-  );
-
   state = {
     ...INITIAL_STATE,
   };
@@ -34,14 +28,12 @@ class ContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
-    const { nameId, numberId } = this.idList;
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <InputWrapper>
-          <Label htmlFor={nameId}>Name</Label>
+        <Label>
+          <LabelName>Name</LabelName>
           <Input
-            id={nameId}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -50,11 +42,10 @@ class ContactForm extends Component {
             value={name}
             onChange={this.handleChange}
           />
-        </InputWrapper>
-        <InputWrapper>
-          <Label htmlFor={numberId}>Phone</Label>
+        </Label>
+        <Label>
+          <LabelName>Phone</LabelName>
           <Input
-            id={numberId}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -63,7 +54,7 @@ class ContactForm extends Component {
             value={number}
             onChange={this.handleChange}
           />
-        </InputWrapper>
+        </Label>
         <Button type="submit">Add contact</Button>
       </Form>
     );

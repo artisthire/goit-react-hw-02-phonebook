@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import { Number, Button } from './ContactListItem.styled';
+import { Item, Number, Button } from './ContactListItem.styled';
 
 function ContactListItem({ name, number, onContactRemove }) {
   return (
-    <>
+    <Item>
       {name}: <Number>{number}</Number>{' '}
-      <Button onClick={onContactRemove}>Delete</Button>
-    </>
+      <Button type="button" onClick={onContactRemove}>
+        Delete
+      </Button>
+    </Item>
   );
 }
 

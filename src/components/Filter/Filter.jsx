@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
-import { InputWrapper, Label, Input } from './Filter.styled';
+import { Label, LabelName, Input } from './Filter.styled';
 
 function Filter({ filterValue, onFilterChange }) {
   const inputId = nanoid();
 
   return (
-    <InputWrapper>
-      <Label htmlFor={inputId}>Find contact by name</Label>
+    <Label>
+      <LabelName htmlFor={inputId}>Find contact by name</LabelName>
       <Input
         id={inputId}
         type="text"
@@ -15,7 +15,7 @@ function Filter({ filterValue, onFilterChange }) {
         value={filterValue}
         onChange={onFilterChange}
       />
-    </InputWrapper>
+    </Label>
   );
 }
 

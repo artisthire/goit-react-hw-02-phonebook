@@ -7,11 +7,12 @@ export const Form = styled.form`
   border-radius: 5px;
 `;
 
-export const InputWrapper = styled.p`
+export const Label = styled.label`
+  display: block;
   margin: 0 0 20px;
 `;
 
-export const Label = styled.label`
+export const LabelName = styled.span`
   display: block;
   margin-bottom: 5px;
   font-size: 24px;

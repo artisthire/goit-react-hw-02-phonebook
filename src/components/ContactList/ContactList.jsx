@@ -1,19 +1,18 @@
 import PropTypes from 'prop-types';
-import { List, Item } from './ContactList.styled';
-import ContactListItem from 'components/ContactListItem';
+import { List } from './ContactList.styled';
+import ContactListItem from 'components/ContactList/ContactListItem';
 
 function ContactList({ contacts, onContactRemove }) {
   return (
     contacts.length > 0 && (
       <List>
         {contacts.map(({ id, name, number }) => (
-          <Item key={id}>
-            <ContactListItem
-              name={name}
-              number={number}
-              onContactRemove={onContactRemove(id)}
-            />
-          </Item>
+          <ContactListItem
+            key={id}
+            name={name}
+            number={number}
+            onContactRemove={onContactRemove(id)}
+          />
         ))}
       </List>
     )

@@ -5,7 +5,3 @@ export const List = styled.ul`
   padding: 0 0 0 30px;
   font-size: 22px;
 `;
-
-export const Item = styled.li`
-  margin: 0 0 10px 0;
-`;

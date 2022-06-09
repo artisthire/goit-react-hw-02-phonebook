@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Item = styled.li`
+  margin: 0 0 10px 0;
+`;
+
 export const Number = styled.span`
   margin-left: 5px;
   font-style: italic;
